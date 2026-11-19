@@ -1,0 +1,40 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Зчитуємо текст
+        Console.Write("Введіть текст: ");
+        string text = Console.ReadLine();
+
+        string result = "";
+
+        // 2. Проходимо по кожному символу тексту
+        for (int i = 0; i < text.Length; i++)
+        {
+            // Номер символу для людини починається з 1, а індекс - з 0
+            int position = i + 1;
+
+            if (position % 15 == 0)
+            {
+                result = result + "?"; // кожен 15-й символ
+            }
+            else if (position % 5 == 0)
+            {
+                result = result + "9"; // кожен 5-й символ
+            }
+            else if (position % 3 == 0)
+            {
+                result = result + "X"; // кожен 3-й символ
+            }
+            else
+            {
+                result = result + text[i]; // залишаємо символ без змін
+            }
+        }
+
+        // 3. Виводимо результат
+        Console.WriteLine("Результат: " + result);
+    }
+}
