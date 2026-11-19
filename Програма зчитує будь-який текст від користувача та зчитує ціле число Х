@@ -1,0 +1,47 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Зчитуємо речення
+        Console.Write("Введіть речення: ");
+        string text = Console.ReadLine();
+
+        // 2. Зчитуємо число X
+        Console.Write("Скільки слів видалити: ");
+        int x = Convert.ToInt32(Console.ReadLine());
+
+        // 3. Розбиваємо речення на слова (по пробілах)
+        //    RemoveEmptyEntries - щоб зайві пробіли не рахувались як слова
+        string[] words = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // 4. Перевіряємо, чи залишаться слова
+        if (x >= words.Length)
+        {
+            Console.WriteLine("Результат: (слів не залишилось)");
+            return;
+        }
+
+        if (x < 0)
+        {
+            x = 0; // від'ємне число - нічого не видаляємо
+        }
+
+        // 5. Збираємо слова, починаючи з позиції X
+        string result = "";
+        for (int i = x; i < words.Length; i++)
+        {
+            result = result + words[i];
+
+            // ставимо пробіл між словами, але не після останнього
+            if (i < words.Length - 1)
+            {
+                result = result + " ";
+            }
+        }
+
+        // 6. Виводимо результат
+        Console.WriteLine("Результат: " + result);
+    }
+}
