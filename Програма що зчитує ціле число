@@ -1,0 +1,34 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Зчитуємо число з клавіатури
+        Console.Write("Введіть ціле число: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+        // 2. Запам'ятовуємо знак числа
+        int sign = 1;
+        if (number < 0)
+        {
+            sign = -1;
+            number = -number; // робимо число додатним
+        }
+
+        // 3. Розвертаємо цифри
+        int result = 0;
+        while (number > 0)
+        {
+            int digit = number % 10;      // беремо останню цифру
+            result = result * 10 + digit; // дописуємо її в кінець результату
+            number = number / 10;         // відкидаємо останню цифру
+        }
+
+        // 4. Повертаємо знак
+        result = result * sign;
+
+        // 5. Виводимо результат
+        Console.WriteLine("Результат: " + result);
+    }
+}
