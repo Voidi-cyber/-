@@ -1,0 +1,60 @@
+using System;
+
+class Program
+{
+    // Допоміжний метод: зчитує дробове число.
+    // Дозволяє вводити і з крапкою (2.5), і з комою (2,5).
+    static double ReadNumber(string message)
+    {
+        Console.Write(message);
+        string input = Console.ReadLine();
+        input = input.Replace(',', '.'); // замінюємо кому на крапку
+        return Convert.ToDouble(input, System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    static void Main()
+    {
+        // 1. Показуємо меню
+        Console.WriteLine("Площу якої фігури ви хочете отримати?");
+        Console.WriteLine("1 - Квадрат");
+        Console.WriteLine("2 - Круг");
+        Console.WriteLine("3 - Прямокутник");
+        Console.WriteLine("4 - Трикутник");
+        Console.Write("Ваш вибір: ");
+        string choice = Console.ReadLine();
+
+        double area = 0;
+
+        // 2. Залежно від вибору питаємо розміри і рахуємо площу
+        if (choice == "1")
+        {
+            double side = ReadNumber("Введіть сторону квадрата: ");
+            area = side * side;
+        }
+        else if (choice == "2")
+        {
+            double radius = ReadNumber("Введіть радіус круга: ");
+            area = Math.PI * radius * radius;
+        }
+        else if (choice == "3")
+        {
+            double a = ReadNumber("Введіть першу сторону: ");
+            double b = ReadNumber("Введіть другу сторону: ");
+            area = a * b;
+        }
+        else if (choice == "4")
+        {
+            double baseSide = ReadNumber("Введіть основу трикутника: ");
+            double height = ReadNumber("Введіть висоту трикутника: ");
+            area = baseSide * height / 2;
+        }
+        else
+        {
+            Console.WriteLine("Помилка: потрібно ввести число від 1 до 4.");
+            return;
+        }
+
+        // 3. Виводимо результат, округлений до 2 знаків після коми
+        Console.WriteLine("Площа = " + Math.Round(area, 2));
+    }
+}
